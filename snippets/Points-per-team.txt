@@ -1,0 +1,10 @@
+home_points = games_df.groupby(['season','home_team']).sum()[['home_score']]
+away_points = games_df.groupby(['season','away_team']).sum()[['away_score']]
+home_points.index.names = ["season","team"]
+home_points.columns = ["points"]
+away_points.columns = ["points"]
+away_points.index.names = ["season","team"]
+points = pd.concat([home_points, away_points]).reset_index().groupby(['season','team']).sum()[['points']]
+points.head()
+
+
